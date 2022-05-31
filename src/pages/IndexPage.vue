@@ -1,14 +1,5 @@
 <template>
-  <q-page class="bg-gray-100 dark:bg-gray-800 h-screen overflow-hidden relative">
-    <!-- This example requires Tailwind CSS v2.0+ -->
-    <!--
-  This example requires updating your template:
-
-  ```
-  <html class="h-full bg-gray-100">
-  <body class="h-full">
-  ```
--->
+  <q-page class="bg-gray-100 dark:bg-gray-800 h-screen overflow-auto relative">
     <div class="min-h-full">
       <nav class="bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,17 +15,17 @@
               <div class="hidden md:block">
                 <div class="ml-10 flex items-baseline space-x-4">
                   <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                  <a
-                    href="#"
-                    class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                  <router-link
+                    to="/dashboard"
+                    class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
                     aria-current="page"
-                    >Dashboard</a
+                    >Dashboard</router-link
                   >
 
-                  <a
-                    href="#"
+                  <router-link
+                    to="/blog"
                     class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                    >Team</a
+                    >Blog</router-link
                   >
 
                   <a
@@ -210,17 +201,17 @@
         <div class="md:hidden" id="mobile-menu">
           <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a
-              href="#"
-              class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+            <router-link
+              to="/dashboard"
+              class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
               aria-current="page"
-              >Dashboard</a
+              >Dashboard</router-link
             >
 
-            <a
-              href="#"
-              class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              >Team</a
+            <router-link
+              to="/blog"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >Blog</router-link
             >
 
             <a
@@ -302,16 +293,12 @@
         </div>
       </nav>
 
-      <header class="bg-white shadow">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h1 class="text-3xl font-bold text-gray-900">Dashboard</h1>
-        </div>
-      </header>
       <main>
-        <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <!-- Replace with your content -->
-          <div class="px-4 py-6 sm:px-0">
-            <div class="border-4 border-dashed border-gray-200 rounded-lg h-96"></div>
+          <div class="px-4 sm:px-0">
+            <!-- <div class="border-4 border-dashed border-gray-200 rounded-lg h-96"></div> -->
+            <router-view></router-view>
           </div>
           <!-- /End replace -->
         </div>

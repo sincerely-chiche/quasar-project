@@ -1,7 +1,10 @@
 <template>
   <q-page class="items-center justify-evenly">
     <div class="bg-indigo-900 relative overflow-hidden h-screen">
-      <img src="https://picsum.photos/1000" class="absolute h-full w-full object-cover" />
+      <img
+        src="https://wallpaperaccess.com/full/334698.jpg"
+        class="absolute h-full w-full object-cover"
+      />
 
       <div
         class="container mx-auto px-6 md:px-12 relative z-10 flex justify-between items-center py-32 xl:py-40"
