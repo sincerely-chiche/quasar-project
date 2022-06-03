@@ -74,6 +74,13 @@ module.exports = configure(function( /* ctx */ ) {
 
             // extendViteConf (viteConf) {},
             // viteVuePluginOptions: {},
+            viteVuePluginOptions: {
+                template: {
+                    compilerOptions: {
+                        isPreTag: (tag) => tag === 'pre ' || tag === 'q-markdown',
+                    },
+                },
+            },
 
             // vitePlugins: [
             //   [ 'package-name', { ..options.. } ]
