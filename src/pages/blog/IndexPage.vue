@@ -1,8 +1,45 @@
 <template>
   <q-page padding>
     <div class="text-gray-600 body-font">
-      <p class="text-3xl uppercase text-white">Welcome to my blog</p>
-      <div class="py-20">
+      <div
+        class="w-full flex flex-col sm:flex-row sm:items-center sm:justify-end bg-gray-700 py-4 sm:py-2 px-4 rounded mb-4"
+      >
+        <q-input
+          dark
+          color="white"
+          dense
+          outlined
+          clearable
+          v-model="searchText"
+          label="Search for a post"
+        >
+          <template v-slot:before>
+            <q-icon @click="clearSearch" name="search" class="font-bold" />
+          </template>
+        </q-input>
+      </div>
+      <div class="text-left my-8 sm:mb-6">
+        <p class="text-xl text-white">Welcome to my blog</p>
+        <p class="text-xs text-gray-400">Something really cool goes here 🚀</p>
+      </div>
+
+      <div class="w-40">
+        <q-select
+          dark
+          color="white"
+          label="Select filter"
+          label-color="white"
+          class="text-white"
+          dense
+          clearable
+          outlined
+          v-model="selectedFilter"
+          :options="filters"
+          popup-content-class="bg-gray-800 text-white"
+        />
+      </div>
+
+      <div class="py-10">
         <div class="flex flex-wrap -m-4">
           <div v-for="n in 9" :key="n" class="p-4 md:w-1/2 lg:w-1/3">
             <div
@@ -10,7 +47,7 @@
             >
               <img
                 class="lg:h-48 md:h-36 w-full object-cover object-center"
-                src="https://dummyimage.com/720x400"
+                :src="`https://picsum.photos/seed/${n}/600`"
                 alt="blog"
               />
               <div class="p-6">
@@ -27,8 +64,11 @@
                   microdosing tousled waistcoat.
                 </p>
                 <div class="flex items-center flex-wrap">
-                  <a class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0"
-                    >Learn More
+                  <router-link
+                  :to="`/blog/${n}`"
+                    class="text-white font-bold inline-flex items-center md:mb-2 lg:mb-0"
+                  >
+                    Learn More
                     <svg
                       class="w-4 h-4 ml-2"
                       viewBox="0 0 24 24"
@@ -41,7 +81,7 @@
                       <path d="M5 12h14"></path>
                       <path d="M12 5l7 7-7 7"></path>
                     </svg>
-                  </a>
+                  </router-link>
                   <span
                     class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200"
                   >
@@ -80,13 +120,57 @@
             </div>
           </div>
         </div>
+        <div class="w-full flex flex-row items-center justify-center sm:justify-end">
+          <!-- <q-btn-toggle
+        v-model="model"
+        class="bg-gray-700 mt-10"
+        no-caps
+        unelevated
+        toggle-color="white"
+        text-color="white"
+        :options="[
+          {label: 'Previous', value: 'back'},
+          {label: 'Next', value: 'forward'}
+        ]"
+      /> -->
+          <q-btn-group class="mt-10" unelevated flat>
+            <q-btn
+              size="md"
+              padding="sm"
+              class="bg-gray-700"
+              text-color="white"
+              dense
+              no-caps
+              label="Previous"
+              icon="arrow_left"
+            />
+            <q-btn
+              size="md"
+              padding="sm"
+              class="bg-gray-700"
+              text-color="white"
+              dense
+              no-caps
+              label="Next"
+              icon-right="arrow_right"
+            />
+          </q-btn-group>
+        </div>
       </div>
     </div>
   </q-page>
 </template>
 
-<script>
-export default {};
+<script setup lang="ts">
+import { ref } from "vue";
+
+const searchText = ref<string>("");
+const filters = ref<Array<string>>(["All", "Hot", "Cold"]);
+const selectedFilter = ref<string>("");
+
+function clearSearch() {
+  searchText.value = "";
+}
 </script>
 
 <style></style>
