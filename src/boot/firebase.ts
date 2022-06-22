@@ -3,6 +3,8 @@ import { useAuthStore } from './../stores/auth';
 import { boot } from 'quasar/wrappers'
 import { FirebaseApp, initializeApp } from "firebase/app";
 import * as firebaseAuth from "firebase/auth";
+import { Firestore, getFirestore } from 'firebase/firestore';
+
 
 // "async" is optional;
 // more info on params: https://v2.quasar.dev/quasar-cli/boot-files
@@ -10,6 +12,7 @@ import * as firebaseAuth from "firebase/auth";
 
 let firebase: FirebaseApp | null = null;
 let auth: firebaseAuth.Auth;
+let db: Firestore;
 export default boot(async ({ app, router }) => {
   // something to do
 
@@ -29,9 +32,14 @@ export default boot(async ({ app, router }) => {
   // Initialize Firebase
   firebase = await initializeApp(firebaseConfig);
   auth = firebaseAuth?.getAuth(firebase);
+  db = getFirestore(firebase);
+
+
+
 
   app.config.globalProperties.$firebase = firebase;
   app.config.globalProperties.$auth = auth;
+  app.config.globalProperties.$db = db;
 
   const store = useAuthStore();
 
@@ -65,4 +73,4 @@ export default boot(async ({ app, router }) => {
   })
 })
 
-export { firebase, firebaseAuth, auth };
+export { firebase, firebaseAuth, auth, db };

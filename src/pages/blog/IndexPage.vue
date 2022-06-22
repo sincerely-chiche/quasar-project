@@ -2,7 +2,7 @@
   <q-page padding>
     <div class="text-gray-600 body-font">
       <div
-        class="w-full flex flex-col sm:flex-row sm:items-center sm:justify-end bg-gray-700 py-4 sm:py-2 px-4 rounded mb-4"
+        class="w-full -z-50 flex flex-col sm:flex-row sm:items-center sm:justify-end bg-gray-700 py-4 sm:py-2 px-4 rounded mb-4"
       >
         <q-input
           dark
